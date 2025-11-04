@@ -14,7 +14,7 @@
       flex-direction: column;
       justify-content: flex-start; /* align to top */
       align-items: center;
-      margin: 20px 10px; /* add some spacing from top and sides */
+      margin: 50px 20px; /* add some spacing from top and sides */
       background-color: #ffffff;
       font-family: "gravita-geo-variable", sans-serif;
       color: #222222;
@@ -33,6 +33,14 @@
       font-size: clamp(14px, 2vw, 16px);
       white-space: pre-line;
     }
+
+      /* Media query for mobile screens */
+    @media (max-width: 600px) {
+      img {
+        max-width: 50%;  /* mobile logo size */
+      }
+    }
+    
   </style>
 </head>
 
