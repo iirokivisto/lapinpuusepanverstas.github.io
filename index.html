@@ -40,6 +40,19 @@
         max-width: 70%;  /* mobile logo size */
       }
     }
+
+    .secondary-image {
+      max-width: 50%;      /* scale as desired */
+      height: auto;
+      margin-top: 20px;    /* space above the image */
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      .secondary-image {
+        max-width: 80%;    /* make it larger on small screens */
+      }
+    }
     
   </style>
 </head>
@@ -47,6 +60,7 @@
 <body>
   <img src="assets/images/LOGO_iinodesign.png" alt="IINO Design logo">
   <p id="text-content">Loading...</p>
+  <img src="assets/images/tuotteettehtyraumanlapissa.png" alt="Second graphic" class="secondary-image">
 
   <script>
     fetch('about.txt')
