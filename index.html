@@ -12,24 +12,23 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start; /* align to top */
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      margin: 20px 10px; /* add some spacing from top and sides */
       background-color: #ffffff;
       font-family: "gravita-geo-variable", sans-serif;
       color: #222222;
     }
     img {
-      max-width: 300px;
+      max-width: 90%; /* never wider than screen */
       height: auto;
       margin-bottom: 20px;
     }
     p {
-      max-width: 600px;
+      max-width: 90%;      /* width relative to screen */
       text-align: center;
       line-height: 1.4;
-      font-size: 16px;
+      font-size: clamp(14px, 4vw, 18px);
       white-space: pre-line;
     }
   </style>
