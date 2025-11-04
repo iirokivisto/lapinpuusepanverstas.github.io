@@ -7,20 +7,43 @@
   <style>
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
       background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      color: #222222;
     }
     img {
       max-width: 300px;
       height: auto;
+      margin-bottom: 20px;
+    }
+    p {
+      max-width: 400px;
+      text-align: center;
+      line-height: 1.4;
+      font-size: 16px;
+      white-space: pre-line; /* keeps line breaks in about.txt */
     }
   </style>
 </head>
 <body>
   <img src="assets/images/LOGO_iinodesign.png" alt="IINO Design logo">
+  <p id="text-content">Loading...</p>
+
+  <script>
+    fetch('about.txt')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('text-content').textContent = data;
+      })
+      .catch(error => {
+        document.getElementById('text-content').textContent = 'Error loading text.';
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
-
