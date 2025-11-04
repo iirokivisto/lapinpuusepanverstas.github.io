@@ -20,15 +20,17 @@
       color: #222222;
     }
     img {
-      max-width: 90%; /* never wider than screen */
+      max-width: 25%; /* never wider than screen */
       height: auto;
       margin-bottom: 20px;
     }
     p {
-      max-width: 90%;      /* width relative to screen */
+      max-width: 33%;       /* roughly 1/3 on large screens */
+      width: 90%;           /* scale down on small screens */
+      min-width: 200px;     /* don't get too small */
       text-align: center;
       line-height: 1.4;
-      font-size: clamp(14px, 4vw, 18px);
+      font-size: clamp(14px, 2vw, 16px);
       white-space: pre-line;
     }
   </style>
