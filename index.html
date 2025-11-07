@@ -66,6 +66,22 @@
         max-width: 80%;
       }
     }
+
+    .caption {
+      max-width: 30%;
+      text-align: center;
+      font-size: clamp(13px, 1.5vw, 15px);
+      color: #555;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+
+    /* Mobile adjustment */
+    @media (max-width: 600px) {
+      .caption {
+        max-width: 80%;
+      }
+    }
     
   </style>
 </head>
@@ -75,7 +91,9 @@
   <p id="text-content">Loading...</p>
   <img src="assets/images/tuotteetvalmistetturaumanlapissa.png" alt="Second graphic" class="secondary-image">
   <img src="assets/images/Inastool_v001.jpg" alt="Gallery image 1" class="gallery-image">
+  <p class="caption">Ina-jakkara</p>
   <img src="assets/images/IINOstool_v001.jpg" alt="Gallery image 2" class="gallery-image">
+  <p class="caption">IINO-jakkara</p>
 
   <p class="contact-info">
     Ota yhteyttä :)<br>
