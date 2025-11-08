@@ -147,18 +147,18 @@
     Puhelin: +358 40 757 1896<br>
   </p>
   
-  <script>
+   <script>
     // Elements and defaults
     const textEl = document.getElementById('text-content');
+    const secImg = document.getElementById('secondary-image');
   
     // Language selector: load saved or default to Finnish
     let currentLang = localStorage.getItem('iino_lang') || 'fi';
   
     // Load initial language
     loadAboutText(currentLang);
-    // If you already have a language-selector footer, mark active later after it's in DOM
   
-    // Function to fetch appropriate about text file
+    // Function to fetch appropriate about text file and update secondary image
     function loadAboutText(lang) {
       const path = (lang === 'sv') ? 'about_sv.txt' : 'about.txt';
       fetch(path)
@@ -168,7 +168,15 @@
         })
         .then(txt => {
           textEl.textContent = txt;
-          // update active class on language switcher (if present)
+  
+          // Update secondary image for Finnish or Swedish
+          if (secImg) {
+            secImg.src = (lang === 'sv')
+              ? 'assets/images/tuotteetvalmistetturaumanlapissa_sv.png'
+              : 'assets/images/tuotteetvalmistetturaumanlapissa.png';
+          }
+  
+          // Update active class on language switcher
           const btnFi = document.querySelector('[data-lang="fi"]');
           const btnSv = document.querySelector('[data-lang="sv"]');
           if (btnFi && btnSv) {
