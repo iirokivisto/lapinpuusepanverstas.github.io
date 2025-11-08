@@ -152,76 +152,79 @@
   </p>
 
   
- <script>
-  // Elements and defaults
-  const textEl = document.getElementById('text-content');
-  const secImg = document.getElementById('secondary-image');
-
-  / Translations for other text elements
-  const translations = {
-    fi: {
-      "products-title": "Tuotteet",
-      "gallery1-caption": "Ina-jakkara",
-      "gallery2-caption": "IINO-jakkara",
-      "gallery3-caption": "Bera-puukori",
-      "contact-line1": "Ota yhteyttä :)",
-      "contact-email": "Sähköposti: iirokivisto@protonmail.com",
-      "contact-phone": "Puhelin: +358 40 757 1896"
-    },
-    sv: {
-      "products-title": "Produkter",
-      "gallery1-caption": "Ina-pall",
-      "gallery2-caption": "IINO-pall",
-      "gallery3-caption": "Bera-vedkorg",
-      "contact-line1": "Kontakta oss :)",
-      "contact-email": "E-post: iirokivisto@protonmail.com",
-      "contact-phone": "Telefon: +358 40 757 1896"
-    }
-  };
-
-  function updateTranslations(lang) {
-    Object.keys(translations[lang]).forEach(key => {
-      const el = document.querySelector(`[data-key="${key}"]`);
-      if (el) el.textContent = translations[lang][key];
-    });
-  }
-   
-  // Language selector: load saved or default to Finnish
-  let currentLang = localStorage.getItem('iino_lang') || 'fi';
-
-  // Load initial language
-  loadAboutText(currentLang);
-
-  // Function to fetch appropriate about text file and update secondary image
-  function loadAboutText(lang) {
-    const path = (lang === 'sv') ? 'about_sv.txt' : 'about.txt';
-    fetch(path)
-      .then(resp => {
-        if (!resp.ok) throw new Error('Network response was not ok');
-        return resp.text();
-      })
-      .then(txt => {
-        textEl.textContent = txt;
-
-        // Update secondary image for Finnish or Swedish
-        if (secImg) {
-          secImg.src = (lang === 'sv')
-            ? 'assets/images/tuotteetvalmistetturaumanlapissa_sv.png'
-            : 'assets/images/tuotteetvalmistetturaumanlapissa.png';
-        }
-
-        // Update active class on language switcher
-        const btnFi = document.querySelector('[data-lang="fi"]');
-        const btnSv = document.querySelector('[data-lang="sv"]');
-        if (btnFi && btnSv) {
-          btnFi.classList.toggle('active', lang === 'fi');
-          btnSv.classList.toggle('active', lang === 'sv');
-        }
-      })
-      .catch(err => {
-        console.error('Error loading about text:', err);
-        textEl.textContent = 'Error loading text.';
+  <script>
+    // Elements and defaults
+    const textEl = document.getElementById('text-content');
+    const secImg = document.getElementById('secondary-image');
+  
+    // Translations for other text elements
+    const translations = {
+      fi: {
+        "products-title": "Tuotteet",
+        "gallery1-caption": "Ina-jakkara",
+        "gallery2-caption": "IINO-jakkara",
+        "gallery3-caption": "Bera-puukori",
+        "contact-line1": "Ota yhteyttä :)",
+        "contact-email": "Sähköposti: iirokivisto@protonmail.com",
+        "contact-phone": "Puhelin: +358 40 757 1896"
+      },
+      sv: {
+        "products-title": "Produkter",
+        "gallery1-caption": "Ina-pall",
+        "gallery2-caption": "IINO-pall",
+        "gallery3-caption": "Bera-vedkorg",
+        "contact-line1": "Kontakta oss :)",
+        "contact-email": "E-post: iirokivisto@protonmail.com",
+        "contact-phone": "Telefon: +358 40 757 1896"
+      }
+    };
+  
+    function updateTranslations(lang) {
+      Object.keys(translations[lang]).forEach(key => {
+        const el = document.querySelector(`[data-key="${key}"]`);
+        if (el) el.textContent = translations[lang][key];
       });
+    }
+  
+    // Language selector: load saved or default to Finnish
+    let currentLang = localStorage.getItem('iino_lang') || 'fi';
+  
+    // Load initial language
+    loadAboutText(currentLang);
+  
+    // Function to fetch appropriate about text file and update secondary image
+    function loadAboutText(lang) {
+      const path = (lang === 'sv') ? 'about_sv.txt' : 'about.txt';
+      fetch(path)
+        .then(resp => {
+          if (!resp.ok) throw new Error('Network response was not ok');
+          return resp.text();
+        })
+        .then(txt => {
+          textEl.textContent = txt;
+  
+          // Update captions and contact info
+          updateTranslations(lang);
+  
+          // Update secondary image for Finnish or Swedish
+          if (secImg) {
+            secImg.src = (lang === 'sv')
+              ? 'assets/images/tuotteetvalmistetturaumanlapissa_sv.png'
+              : 'assets/images/tuotteetvalmistetturaumanlapissa.png';
+          }
+  
+          // Update active class on language switcher
+          const btnFi = document.querySelector('[data-lang="fi"]');
+          const btnSv = document.querySelector('[data-lang="sv"]');
+          if (btnFi && btnSv) {
+            btnFi.classList.toggle('active', lang === 'fi');
+            btnSv.classList.toggle('active', lang === 'sv');
+          }
+        })
+        .catch(err => {
+          console.error('Error loading about text:', err);
+          textEl.textContent = 'Error loading text.';
+        });
     }
   
     // Attach click handlers to language buttons (works even if added later)
