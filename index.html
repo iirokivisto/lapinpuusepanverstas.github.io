@@ -99,6 +99,26 @@
       margin-top: 40px;
       padding-bottom: 20px;
     }
+
+    .language-switch {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #bbb;
+      text-align: center;
+    }
+    .language-switch [data-lang] {
+      cursor: pointer;
+      color: #bbb;
+      margin: 0 6px;
+      text-decoration: none;
+    }
+    .language-switch [data-lang]:hover {
+      color: #666;
+    }
+    .language-switch .active {
+      color: #222;
+      font-weight: 500;
+    }
     
   </style>
 </head>
@@ -171,7 +191,11 @@
   </script>
 
   <footer class="site-footer">
-    <p>© 2025 IINO Oy</p>
+    <p>© 2025 IINO Design</p>
+    <div class="language-switch">
+      <span data-lang="fi">Suomi</span> |
+      <span data-lang="sv">Svenska</span>
+    </div>
   </footer>
 
 </body>
