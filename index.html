@@ -122,15 +122,52 @@
   </p>
   
   <script>
-    fetch('about.txt')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('text-content').textContent = data;
-      })
-      .catch(error => {
-        document.getElementById('text-content').textContent = 'Error loading text.';
-        console.error(error);
-      });
+    // Elements and defaults
+    const textEl = document.getElementById('text-content');
+  
+    // Language selector: load saved or default to Finnish
+    let currentLang = localStorage.getItem('iino_lang') || 'fi';
+  
+    // Load initial language
+    loadAboutText(currentLang);
+    // If you already have a language-selector footer, mark active later after it's in DOM
+  
+    // Function to fetch appropriate about text file
+    function loadAboutText(lang) {
+      const path = (lang === 'sv') ? 'about_sv.txt' : 'about.txt';
+      fetch(path)
+        .then(resp => {
+          if (!resp.ok) throw new Error('Network response was not ok');
+          return resp.text();
+        })
+        .then(txt => {
+          textEl.textContent = txt;
+          // update active class on language switcher (if present)
+          const btnFi = document.querySelector('[data-lang="fi"]');
+          const btnSv = document.querySelector('[data-lang="sv"]');
+          if (btnFi && btnSv) {
+            btnFi.classList.toggle('active', lang === 'fi');
+            btnSv.classList.toggle('active', lang === 'sv');
+          }
+        })
+        .catch(err => {
+          console.error('Error loading about text:', err);
+          textEl.textContent = 'Error loading text.';
+        });
+    }
+  
+    // Attach click handlers to language buttons (works even if added later)
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      if (target && target.matches && target.matches('.language-switch [data-lang]')) {
+        const selected = target.getAttribute('data-lang');
+        if (selected && selected !== currentLang) {
+          currentLang = selected;
+          localStorage.setItem('iino_lang', currentLang);
+          loadAboutText(currentLang);
+        }
+      }
+    });
   </script>
 
   <footer class="site-footer">
