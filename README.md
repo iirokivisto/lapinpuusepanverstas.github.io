@@ -1,2 +1,3 @@
-# iirokivisto.github.io
-IINO-Design website
+# lapinpuusepanverstas.github.io
+Lapin Puusepänverstas website
+
