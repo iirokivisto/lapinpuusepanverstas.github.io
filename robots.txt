@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iinodesign.fi/sitemap.xml
+Sitemap: https://lapinpuusepanverstas.fi/sitemap.xml
