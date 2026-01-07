@@ -126,6 +126,46 @@
       font-weight: 500;
     }
     
+    .contact-block {
+      max-width: 400px;
+      width: 90%;
+      margin: 50px auto 0;
+      text-align: center;
+    }
+    
+    .contact-block form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .contact-block input,
+    .contact-block textarea {
+      font-family: inherit;
+      font-size: 14px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    .contact-block textarea {
+      resize: vertical;
+    }
+    
+    .contact-block button {
+      padding: 10px;
+      font-size: 14px;
+      border: none;
+      background-color: #222;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .contact-block button:hover {
+      background-color: #444;
+    }
+
+    
   </style>
 </head>
 
@@ -153,11 +193,21 @@
   <img src="assets/images/puukori_v1.jpg" alt="Bera puukori" class="gallery-image">
   <p class="caption" data-key="gallery3-caption">Bera-puukori</p>
   
-  <p class="contact-info">
-    <span data-key="contact-line1">Ota yhteyttä :)</span><br>
-    <span data-key="contact-email">Sähköposti: iirokivisto@protonmail.com</span><br>
-    <span data-key="contact-phone">Puhelin: +358 40 757 1896</span>
-  </p>
+  <section class="contact-block">
+    <h2 class="section-title" data-key="contact-title">Yhteydenotto</h2>
+  
+    <form
+      action="https://formspree.io/f/mkogdodz"
+      method="POST"
+    >
+      <input type="text" name="name" placeholder="Nimi" required>
+      <input type="email" name="email" placeholder="Sähköposti" required>
+      <textarea name="message" placeholder="Viesti" rows="5" required></textarea>
+  
+      <button type="submit">Lähetä</button>
+    </form>
+  </section>
+
 
   
  <script>
