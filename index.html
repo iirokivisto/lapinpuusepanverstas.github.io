@@ -318,7 +318,7 @@
 
   // Load initial language
   loadAboutText(currentLang);
-  updateTranslations(currentLang);
+  
 
   // Function to fetch appropriate about text file and update secondary image
   function loadAboutText(lang) {
@@ -329,7 +329,7 @@
         return resp.text();
       })
       .then(txt => {
-        textEl.textContent = txt;
+        textEl.innerHTML = txt;
 
         // Update secondary image for Finnish, Swedish, or English
         if (secImg) {
