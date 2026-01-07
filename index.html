@@ -200,11 +200,31 @@
       action="https://formspree.io/f/mkogdodz"
       method="POST"
     >
-      <input type="text" name="name" placeholder="Nimi" required>
-      <input type="email" name="email" placeholder="Sähköposti" required>
-      <textarea name="message" placeholder="Viesti" rows="5" required></textarea>
+      <input
+        type="text"
+        name="name"
+        data-placeholder="contact-name"
+        placeholder="Nimi"
+        required
+      >
   
-      <button type="submit">Lähetä</button>
+      <input
+        type="email"
+        name="email"
+        data-placeholder="contact-email"
+        placeholder="Sähköposti"
+        required
+      >
+  
+      <textarea
+        name="message"
+        rows="5"
+        data-placeholder="contact-message"
+        placeholder="Viesti"
+        required
+      ></textarea>
+  
+      <button type="submit" data-key="contact-submit">Lähetä</button>
     </form>
   </section>
 
@@ -222,36 +242,55 @@
       "gallery1-caption": "Ina-jakkara",
       "gallery2-caption": "IINO-jakkara",
       "gallery3-caption": "Bera-puukori",
-      "contact-line1": "Ota yhteyttä :)",
-      "contact-email": "Sähköposti: iirokivisto@protonmail.com",
-      "contact-phone": "Puhelin: +358 40 757 1896"
+      
+      "contact-title": "Yhteydenotto",
+      "contact-name": "Nimi",
+      "contact-email": "Sähköposti",
+      "contact-message": "Viesti",
+      "contact-submit": "Lähetä"
     },
     sv: {
       "products-title": "Produkter",
       "gallery1-caption": "Ina-pall",
       "gallery2-caption": "IINO-pall",
       "gallery3-caption": "Bera-vedkorg",
-      "contact-line1": "Kontakta oss :)",
-      "contact-email": "E-post: iirokivisto@protonmail.com",
-      "contact-phone": "Telefon: +358 40 757 1896"
+      
+      "contact-title": "Kontakt",
+      "contact-name": "Namn",
+      "contact-email": "E-post",
+      "contact-message": "Meddelande",
+      "contact-submit": "Skicka"
     },
     en: {
       "products-title": "Products",
       "gallery1-caption": "Ina stool",
       "gallery2-caption": "IINO stool",
       "gallery3-caption": "Bera firewood basket",
-      "contact-line1": "Contact us :)",
-      "contact-email": "Email: iirokivisto@protonmail.com",
-      "contact-phone": "Phone: +358 40 757 1896"
+      
+      "contact-title": "Contact",
+      "contact-name": "Name",
+      "contact-email": "Email",
+      "contact-message": "Message",
+      "contact-submit": "Send"
     }
   };
 
   function updateTranslations(lang) {
-    Object.keys(translations[lang]).forEach(key => {
+    const dict = translations[lang];
+  
+    // Normal text content
+    Object.keys(dict).forEach(key => {
       const el = document.querySelector(`[data-key="${key}"]`);
-      if (el) el.textContent = translations[lang][key];
+      if (el) el.textContent = dict[key];
+    });
+  
+    // Placeholders
+    Object.keys(dict).forEach(key => {
+      const el = document.querySelector(`[data-placeholder="${key}"]`);
+      if (el) el.placeholder = dict[key];
     });
   }
+
 
   // Language selector: load saved or default to Finnish
   let currentLang = localStorage.getItem('iino_lang') || 'fi';
